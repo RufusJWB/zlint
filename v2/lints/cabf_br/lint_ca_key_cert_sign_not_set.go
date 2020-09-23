@@ -33,7 +33,7 @@ func (l *caKeyCertSignNotSet) Initialize() error {
 }
 
 func (l *caKeyCertSignNotSet) CheckApplies(c *x509.Certificate) bool {
-	return c.IsCA && util.IsExtInCert(c, util.KeyUsageOID)
+	return c.IsCA && util.IsExtInCert(c, util.KeyUsageOID) && util.IsServerAuthCert(c)
 }
 
 func (l *caKeyCertSignNotSet) Execute(c *x509.Certificate) *lint.LintResult {

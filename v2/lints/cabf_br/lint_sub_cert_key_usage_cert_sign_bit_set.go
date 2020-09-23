@@ -33,7 +33,7 @@ func (l *subCertKeyUsageBitSet) Initialize() error {
 }
 
 func (l *subCertKeyUsageBitSet) CheckApplies(c *x509.Certificate) bool {
-	return util.IsExtInCert(c, util.KeyUsageOID) && !util.IsCACert(c)
+	return util.IsExtInCert(c, util.KeyUsageOID) && !util.IsCACert(c) && util.IsServerAuthCert(c)
 }
 
 func (l *subCertKeyUsageBitSet) Execute(c *x509.Certificate) *lint.LintResult {

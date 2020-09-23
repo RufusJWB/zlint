@@ -30,6 +30,10 @@ func (l *dsaSubgroup) Initialize() error {
 }
 
 func (l *dsaSubgroup) CheckApplies(c *x509.Certificate) bool {
+	if !util.IsServerAuthCert(c) {
+		return false
+	}
+
 	if c.PublicKeyAlgorithm != x509.DSA {
 		return false
 	}

@@ -36,7 +36,8 @@ func (l *SANReservedIP) Initialize() error {
 }
 
 func (l *SANReservedIP) CheckApplies(c *x509.Certificate) bool {
-	return c.NotAfter.After(util.NoReservedIP)
+	// todo: shouldn't this be moved to "EffectiveDate" in init()?
+	return c.NotAfter.After(util.NoReservedIP) && util.IsServerAuthCert(c)
 }
 
 func (l *SANReservedIP) Execute(c *x509.Certificate) *lint.LintResult {

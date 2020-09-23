@@ -36,7 +36,7 @@ func (l *subCRLDistNoURL) Initialize() error {
 }
 
 func (l *subCRLDistNoURL) CheckApplies(c *x509.Certificate) bool {
-	return util.IsExtInCert(c, util.CrlDistOID)
+	return util.IsExtInCert(c, util.CrlDistOID) && util.IsServerAuthCert(c)
 }
 
 func (l *subCRLDistNoURL) Execute(c *x509.Certificate) *lint.LintResult {

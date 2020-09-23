@@ -86,7 +86,7 @@ func (l *onionNotValid) Initialize() error {
 func (l *onionNotValid) CheckApplies(c *x509.Certificate) bool {
 	// TODO(sleevi): This should also be extended to support nameConstraints
 	// in the future.
-	return util.CertificateSubjInTLD(c, util.OnionTLD)
+	return util.CertificateSubjInTLD(c, util.OnionTLD) && util.IsServerAuthCert(c)
 }
 
 // Execute will lint the provided certificate. A lint.Error lint.LintResult will

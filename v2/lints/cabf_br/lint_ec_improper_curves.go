@@ -35,7 +35,7 @@ func (l *ecImproperCurves) Initialize() error {
 }
 
 func (l *ecImproperCurves) CheckApplies(c *x509.Certificate) bool {
-	return c.PublicKeyAlgorithm == x509.ECDSA
+	return (c.PublicKeyAlgorithm == x509.ECDSA) && util.IsServerAuthCert(c)
 }
 
 func (l *ecImproperCurves) Execute(c *x509.Certificate) *lint.LintResult {

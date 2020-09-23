@@ -29,7 +29,7 @@ func (l *CertPolicyIVRequiresCountry) Initialize() error {
 }
 
 func (l *CertPolicyIVRequiresCountry) CheckApplies(cert *x509.Certificate) bool {
-	return util.SliceContainsOID(cert.PolicyIdentifiers, util.BRIndividualValidatedOID)
+	return util.SliceContainsOID(cert.PolicyIdentifiers, util.BRIndividualValidatedOID) && util.IsServerAuthCert(cert)
 }
 
 func (l *CertPolicyIVRequiresCountry) Execute(cert *x509.Certificate) *lint.LintResult {

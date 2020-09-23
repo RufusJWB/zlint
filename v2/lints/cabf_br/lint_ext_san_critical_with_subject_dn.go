@@ -38,7 +38,7 @@ func (l *ExtSANCriticalWithSubjectDN) Initialize() error {
 }
 
 func (l *ExtSANCriticalWithSubjectDN) CheckApplies(cert *x509.Certificate) bool {
-	return util.IsExtInCert(cert, util.SubjectAlternateNameOID)
+	return util.IsExtInCert(cert, util.SubjectAlternateNameOID) && util.IsServerAuthCert(cert)
 }
 
 func (l *ExtSANCriticalWithSubjectDN) Execute(cert *x509.Certificate) *lint.LintResult {

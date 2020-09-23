@@ -30,7 +30,7 @@ func (l *dsaUniqueCorrectRepresentation) Initialize() error {
 }
 
 func (l *dsaUniqueCorrectRepresentation) CheckApplies(c *x509.Certificate) bool {
-	return c.PublicKeyAlgorithm == x509.DSA
+	return (c.PublicKeyAlgorithm == x509.DSA) && util.IsServerAuthCert(c)
 }
 
 func (l *dsaUniqueCorrectRepresentation) Execute(c *x509.Certificate) *lint.LintResult {

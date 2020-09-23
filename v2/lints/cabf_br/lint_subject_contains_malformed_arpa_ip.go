@@ -40,6 +40,10 @@ func (l *arpaMalformedIP) Initialize() error {
 // CheckApplies returns true if the certificate contains any names that end in
 // one of the two designated zones for reverse DNS: in-addr.arpa or ip6.arpa.
 func (l *arpaMalformedIP) CheckApplies(c *x509.Certificate) bool {
+	if !util.IsServerAuthCert(c) {
+		return false
+	}
+
 	names := append([]string{c.Subject.CommonName}, c.DNSNames...)
 	for _, name := range names {
 		name = strings.ToLower(name)

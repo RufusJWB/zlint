@@ -28,7 +28,7 @@ func (l *subCertSubjectGnOrSnContainsPolicy) Initialize() error {
 
 func (l *subCertSubjectGnOrSnContainsPolicy) CheckApplies(c *x509.Certificate) bool {
 	//Check if GivenName or Surname fields are filled out
-	return util.IsSubscriberCert(c) && (len(c.Subject.GivenName) != 0 || len(c.Subject.Surname) != 0)
+	return util.IsSubscriberCert(c) && (len(c.Subject.GivenName) != 0 || len(c.Subject.Surname) != 0) && util.IsServerAuthCert(c)
 }
 
 func (l *subCertSubjectGnOrSnContainsPolicy) Execute(c *x509.Certificate) *lint.LintResult {

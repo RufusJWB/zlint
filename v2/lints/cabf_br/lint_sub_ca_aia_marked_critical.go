@@ -27,7 +27,7 @@ func (l *subCaAIAMarkedCritical) Initialize() error {
 }
 
 func (l *subCaAIAMarkedCritical) CheckApplies(c *x509.Certificate) bool {
-	return util.IsSubCA(c) && util.IsExtInCert(c, util.AiaOID)
+	return util.IsSubCA(c) && util.IsExtInCert(c, util.AiaOID) && util.IsServerAuthCert(c)
 }
 
 func (l *subCaAIAMarkedCritical) Execute(c *x509.Certificate) *lint.LintResult {

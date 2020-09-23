@@ -27,7 +27,7 @@ func (l *publicKeyAllowed) Initialize() error {
 }
 
 func (l *publicKeyAllowed) CheckApplies(c *x509.Certificate) bool {
-	return true
+	return util.IsServerAuthCert(c)
 }
 
 func (l *publicKeyAllowed) Execute(c *x509.Certificate) *lint.LintResult {

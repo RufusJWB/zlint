@@ -34,7 +34,7 @@ func (l *caCRLSignNotSet) Initialize() error {
 }
 
 func (l *caCRLSignNotSet) CheckApplies(c *x509.Certificate) bool {
-	return c.IsCA && util.IsExtInCert(c, util.KeyUsageOID)
+	return c.IsCA && util.IsExtInCert(c, util.KeyUsageOID)  && util.IsServerAuthCert(c)
 }
 
 func (l *caCRLSignNotSet) Execute(c *x509.Certificate) *lint.LintResult {

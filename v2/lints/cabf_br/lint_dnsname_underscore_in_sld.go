@@ -29,7 +29,7 @@ func (l *DNSNameUnderscoreInSLD) Initialize() error {
 }
 
 func (l *DNSNameUnderscoreInSLD) CheckApplies(c *x509.Certificate) bool {
-	return util.IsSubscriberCert(c) && util.DNSNamesExist(c)
+	return util.IsSubscriberCert(c) && util.DNSNamesExist(c) && util.IsServerAuthCert(c)
 }
 
 func (l *DNSNameUnderscoreInSLD) Execute(c *x509.Certificate) *lint.LintResult {

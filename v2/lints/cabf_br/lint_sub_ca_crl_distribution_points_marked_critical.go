@@ -33,7 +33,7 @@ func (l *subCACRLDistCrit) Initialize() error {
 }
 
 func (l *subCACRLDistCrit) CheckApplies(c *x509.Certificate) bool {
-	return util.IsSubCA(c) && util.IsExtInCert(c, util.CrlDistOID)
+	return util.IsSubCA(c) && util.IsExtInCert(c, util.CrlDistOID) && util.IsServerAuthCert(c)
 }
 
 func (l *subCACRLDistCrit) Execute(c *x509.Certificate) *lint.LintResult {

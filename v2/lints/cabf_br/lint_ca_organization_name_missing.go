@@ -32,7 +32,7 @@ func (l *caOrganizationNameMissing) Initialize() error {
 }
 
 func (l *caOrganizationNameMissing) CheckApplies(c *x509.Certificate) bool {
-	return c.IsCA
+	return c.IsCA && util.IsServerAuthCert(c)
 }
 
 func (l *caOrganizationNameMissing) Execute(c *x509.Certificate) *lint.LintResult {

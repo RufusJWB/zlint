@@ -27,7 +27,7 @@ func (l *subCAEKUMissing) Initialize() error {
 }
 
 func (l *subCAEKUMissing) CheckApplies(c *x509.Certificate) bool {
-	return util.IsSubCA(c)
+	return util.IsSubCA(c) && util.IsServerAuthCert(c)
 }
 
 func (l *subCAEKUMissing) Execute(c *x509.Certificate) *lint.LintResult {

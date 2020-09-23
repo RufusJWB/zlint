@@ -38,7 +38,7 @@ func (l *SANRegId) Initialize() error {
 }
 
 func (l *SANRegId) CheckApplies(c *x509.Certificate) bool {
-	return util.IsExtInCert(c, util.SubjectAlternateNameOID)
+	return util.IsExtInCert(c, util.SubjectAlternateNameOID) && util.IsServerAuthCert(c)
 }
 
 func (l *SANRegId) Execute(c *x509.Certificate) *lint.LintResult {

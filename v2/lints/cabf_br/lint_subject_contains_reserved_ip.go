@@ -38,7 +38,7 @@ func (l *subjectReservedIP) Initialize() error {
 }
 
 func (l *subjectReservedIP) CheckApplies(c *x509.Certificate) bool {
-	return c.NotAfter.After(util.NoReservedIP)
+	return c.NotAfter.After(util.NoReservedIP) && util.IsServerAuthCert(c)
 }
 
 func (l *subjectReservedIP) Execute(c *x509.Certificate) *lint.LintResult {

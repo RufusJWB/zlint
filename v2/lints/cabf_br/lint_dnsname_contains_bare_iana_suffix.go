@@ -27,7 +27,7 @@ func (l *dnsNameContainsBareIANASuffix) Initialize() error {
 }
 
 func (l *dnsNameContainsBareIANASuffix) CheckApplies(c *x509.Certificate) bool {
-	return util.IsSubscriberCert(c) && util.DNSNamesExist(c)
+	return util.IsSubscriberCert(c) && util.DNSNamesExist(c) && util.IsServerAuthCert(c)
 }
 
 func (l *dnsNameContainsBareIANASuffix) Execute(c *x509.Certificate) *lint.LintResult {

@@ -39,6 +39,10 @@ func (l *rsaParsedTestsExpInRange) Initialize() error {
 }
 
 func (l *rsaParsedTestsExpInRange) CheckApplies(c *x509.Certificate) bool {
+	if !util.IsServerAuthCert(c) {
+		return false
+	}
+
 	_, ok := c.PublicKey.(*rsa.PublicKey)
 	return ok && c.PublicKeyAlgorithm == x509.RSA
 }

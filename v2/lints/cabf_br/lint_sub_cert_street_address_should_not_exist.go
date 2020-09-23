@@ -27,7 +27,7 @@ func (l *subCertStreetAddressShouldNotExist) Initialize() error {
 }
 
 func (l *subCertStreetAddressShouldNotExist) CheckApplies(c *x509.Certificate) bool {
-	return util.IsSubscriberCert(c)
+	return util.IsSubscriberCert(c) && util.IsServerAuthCert(c)
 }
 
 func (l *subCertStreetAddressShouldNotExist) Execute(c *x509.Certificate) *lint.LintResult {

@@ -35,7 +35,7 @@ func (l *caKeyUsageMissing) Initialize() error {
 }
 
 func (l *caKeyUsageMissing) CheckApplies(c *x509.Certificate) bool {
-	return c.IsCA
+	return c.IsCA && util.IsServerAuthCert(c)
 }
 
 func (l *caKeyUsageMissing) Execute(c *x509.Certificate) *lint.LintResult {

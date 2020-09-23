@@ -38,7 +38,7 @@ func (l *NCReservedIPNet) Initialize() error {
 }
 
 func (l *NCReservedIPNet) CheckApplies(c *x509.Certificate) bool {
-	return c.NotAfter.After(util.NoReservedIP) && util.IsExtInCert(c, util.NameConstOID)
+	return c.NotAfter.After(util.NoReservedIP) && util.IsExtInCert(c, util.NameConstOID) && util.IsServerAuthCert(c)
 }
 
 func (l *NCReservedIPNet) Execute(c *x509.Certificate) *lint.LintResult {

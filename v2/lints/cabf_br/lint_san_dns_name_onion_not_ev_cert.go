@@ -31,6 +31,10 @@ func (l *onionNotEV) Initialize() error {
 // This lint only applies for certificates issued before CA/Browser Forum
 // Ballot SC27, which permitted .onion within non-EV certificates
 func (l *onionNotEV) CheckApplies(c *x509.Certificate) bool {
+	if !util.IsServerAuthCert(c) {
+		return false
+	}
+
 	return c.NotBefore.Before(util.CABFBRs_1_6_9_Date) &&
 		util.IsSubscriberCert(c) &&
 		util.CertificateSubjInTLD(c, util.OnionTLD)

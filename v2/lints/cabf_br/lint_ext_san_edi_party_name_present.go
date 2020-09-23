@@ -38,7 +38,7 @@ func (l *SANEDI) Initialize() error {
 }
 
 func (l *SANEDI) CheckApplies(c *x509.Certificate) bool {
-	return util.IsExtInCert(c, util.SubjectAlternateNameOID)
+	return util.IsExtInCert(c, util.SubjectAlternateNameOID) && util.IsServerAuthCert(c)
 }
 
 func (l *SANEDI) Execute(c *x509.Certificate) *lint.LintResult {

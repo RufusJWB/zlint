@@ -30,7 +30,7 @@ func (l *certPolicyConflictsWithPostal) Initialize() error {
 }
 
 func (l *certPolicyConflictsWithPostal) CheckApplies(cert *x509.Certificate) bool {
-	return util.SliceContainsOID(cert.PolicyIdentifiers, util.BRDomainValidatedOID) && !util.IsCACert(cert)
+	return util.SliceContainsOID(cert.PolicyIdentifiers, util.BRDomainValidatedOID) && !util.IsCACert(cert) && util.IsServerAuthCert(cert)
 }
 
 func (l *certPolicyConflictsWithPostal) Execute(cert *x509.Certificate) *lint.LintResult {

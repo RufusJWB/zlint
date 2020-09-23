@@ -29,7 +29,7 @@ func (l *dsaParamsMissing) Initialize() error {
 }
 
 func (l *dsaParamsMissing) CheckApplies(c *x509.Certificate) bool {
-	return c.PublicKeyAlgorithm == x509.DSA
+	return (c.PublicKeyAlgorithm == x509.DSA) && util.IsServerAuthCert(c)
 }
 
 func (l *dsaParamsMissing) Execute(c *x509.Certificate) *lint.LintResult {

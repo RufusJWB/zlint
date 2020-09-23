@@ -38,7 +38,7 @@ func (l *illegalChar) Initialize() error {
 }
 
 func (l *illegalChar) CheckApplies(c *x509.Certificate) bool {
-	return true
+	return util.IsServerAuthCert(c)
 }
 
 func (l *illegalChar) Execute(c *x509.Certificate) *lint.LintResult {

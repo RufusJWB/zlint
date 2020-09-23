@@ -31,7 +31,7 @@ func (l *InvalidCertificateVersion) Initialize() error {
 }
 
 func (l *InvalidCertificateVersion) CheckApplies(cert *x509.Certificate) bool {
-	return true
+	return util.IsServerAuthCert(cert)
 }
 
 func (l *InvalidCertificateVersion) Execute(cert *x509.Certificate) *lint.LintResult {

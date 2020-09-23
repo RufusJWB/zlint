@@ -31,6 +31,10 @@ func (l *subCaModSize) Initialize() error {
 }
 
 func (l *subCaModSize) CheckApplies(c *x509.Certificate) bool {
+	if !util.IsServerAuthCert(c) {
+		return false
+	}
+
 	issueDate := c.NotBefore
 	endDate := c.NotAfter
 	_, ok := c.PublicKey.(*rsa.PublicKey)

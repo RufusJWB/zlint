@@ -33,7 +33,7 @@ func (l *subExtKeyUsage) Initialize() error {
 }
 
 func (l *subExtKeyUsage) CheckApplies(c *x509.Certificate) bool {
-	return !util.IsCACert(c)
+	return !util.IsCACert(c) && util.IsServerAuthCert(c)
 }
 
 func (l *subExtKeyUsage) Execute(c *x509.Certificate) *lint.LintResult {

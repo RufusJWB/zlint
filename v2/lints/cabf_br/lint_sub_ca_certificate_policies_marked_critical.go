@@ -32,7 +32,7 @@ func (l *subCACertPolicyCrit) Initialize() error {
 }
 
 func (l *subCACertPolicyCrit) CheckApplies(c *x509.Certificate) bool {
-	return util.IsSubCA(c) && util.IsExtInCert(c, util.CertPolicyOID)
+	return util.IsSubCA(c) && util.IsExtInCert(c, util.CertPolicyOID) && util.IsServerAuthCert(c)
 }
 
 func (l *subCACertPolicyCrit) Execute(c *x509.Certificate) *lint.LintResult {

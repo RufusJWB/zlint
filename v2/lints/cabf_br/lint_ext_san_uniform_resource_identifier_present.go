@@ -38,7 +38,7 @@ func (l *SANURI) Initialize() error {
 }
 
 func (l *SANURI) CheckApplies(c *x509.Certificate) bool {
-	return util.IsExtInCert(c, util.SubjectAlternateNameOID)
+	return util.IsExtInCert(c, util.SubjectAlternateNameOID) && util.IsServerAuthCert(c)
 }
 
 func (l *SANURI) Execute(c *x509.Certificate) *lint.LintResult {

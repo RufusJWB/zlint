@@ -29,7 +29,7 @@ func (l *DNSNameWildcardOnlyInLeftlabel) Initialize() error {
 }
 
 func (l *DNSNameWildcardOnlyInLeftlabel) CheckApplies(c *x509.Certificate) bool {
-	return true
+	return util.IsServerAuthCert(c)
 }
 
 func wildcardNotInLeftLabel(domain string) bool {

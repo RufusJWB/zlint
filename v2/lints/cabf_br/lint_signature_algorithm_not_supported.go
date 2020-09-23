@@ -59,7 +59,7 @@ func (l *signatureAlgorithmNotSupported) Initialize() error {
 }
 
 func (l *signatureAlgorithmNotSupported) CheckApplies(c *x509.Certificate) bool {
-	return true
+	return util.IsServerAuthCert(c)
 }
 
 func (l *signatureAlgorithmNotSupported) Execute(c *x509.Certificate) *lint.LintResult {

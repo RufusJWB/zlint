@@ -27,7 +27,7 @@ func (l *caCommonNameMissing) Initialize() error {
 }
 
 func (l *caCommonNameMissing) CheckApplies(c *x509.Certificate) bool {
-	return util.IsCACert(c)
+	return util.IsCACert(c)  && util.IsServerAuthCert(c)
 }
 
 func (l *caCommonNameMissing) Execute(c *x509.Certificate) *lint.LintResult {

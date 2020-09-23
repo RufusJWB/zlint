@@ -29,7 +29,7 @@ func (l *CertPolicyRequiresPersonalName) Initialize() error {
 }
 
 func (l *CertPolicyRequiresPersonalName) CheckApplies(cert *x509.Certificate) bool {
-	return util.SliceContainsOID(cert.PolicyIdentifiers, util.BRIndividualValidatedOID) && !util.IsCACert(cert)
+	return util.SliceContainsOID(cert.PolicyIdentifiers, util.BRIndividualValidatedOID) && !util.IsCACert(cert) && util.IsServerAuthCert(cert)
 }
 
 func (l *CertPolicyRequiresPersonalName) Execute(cert *x509.Certificate) *lint.LintResult {

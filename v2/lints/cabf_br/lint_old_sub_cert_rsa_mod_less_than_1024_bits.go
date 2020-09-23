@@ -29,6 +29,10 @@ func (l *subModSize) Initialize() error {
 }
 
 func (l *subModSize) CheckApplies(c *x509.Certificate) bool {
+	if !util.IsServerAuthCert(c) {
+		return false
+	}
+
 	endDate := c.NotAfter
 	_, ok := c.PublicKey.(*rsa.PublicKey)
 	return ok && c.PublicKeyAlgorithm == x509.RSA && !util.IsCACert(c) && endDate.Before(util.NoRSA1024Date)

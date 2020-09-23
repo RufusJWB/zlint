@@ -29,6 +29,10 @@ func (l *rootCaModSize) Initialize() error {
 }
 
 func (l *rootCaModSize) CheckApplies(c *x509.Certificate) bool {
+	if !util.IsServerAuthCert(c) {
+		return false
+	}
+
 	issueDate := c.NotBefore
 	_, ok := c.PublicKey.(*rsa.PublicKey)
 	return ok && c.PublicKeyAlgorithm == x509.RSA && util.IsRootCA(c) && issueDate.Before(util.NoRSA1024RootDate)

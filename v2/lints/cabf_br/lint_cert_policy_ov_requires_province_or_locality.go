@@ -30,7 +30,7 @@ func (l *CertPolicyOVRequiresProvinceOrLocal) Initialize() error {
 }
 
 func (l *CertPolicyOVRequiresProvinceOrLocal) CheckApplies(cert *x509.Certificate) bool {
-	return util.IsSubscriberCert(cert) && util.SliceContainsOID(cert.PolicyIdentifiers, util.BROrganizationValidatedOID)
+	return util.IsSubscriberCert(cert) && util.SliceContainsOID(cert.PolicyIdentifiers, util.BROrganizationValidatedOID) && util.IsServerAuthCert(cert)
 }
 
 func (l *CertPolicyOVRequiresProvinceOrLocal) Execute(cert *x509.Certificate) *lint.LintResult {

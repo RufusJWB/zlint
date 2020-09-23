@@ -33,7 +33,7 @@ func (l *subCrlSignAllowed) Initialize() error {
 }
 
 func (l *subCrlSignAllowed) CheckApplies(c *x509.Certificate) bool {
-	return util.IsExtInCert(c, util.KeyUsageOID) && !util.IsCACert(c)
+	return util.IsExtInCert(c, util.KeyUsageOID) && !util.IsCACert(c) && util.IsServerAuthCert(c)
 }
 
 func (l *subCrlSignAllowed) Execute(c *x509.Certificate) *lint.LintResult {
