@@ -77,16 +77,19 @@ func init() {
 	})
 }
 
+// Variable containing the consistent KU combinations with Server Authentication EKU:
 //  RFC 5280 4.2.1.12 on KU consistency with Server Authentication EKU:
 //    -- TLS WWW server authentication
 //    -- Key usage bits that may be consistent: digitalSignature,
 //    -- keyEncipherment or keyAgreement
+
 var serverAuth = map[x509.KeyUsage]bool{
 	x509.KeyUsageDigitalSignature: true,
 	x509.KeyUsageKeyEncipherment:  true,
 	x509.KeyUsageKeyAgreement:     true,
 }
 
+// Variable containing the consistent KU combinations with Client Authentication EKU:
 // 	RFC 5280 4.2.1.12 on KU consistency with Client Authentication EKU:
 //    -- TLS WWW client authentication
 //    -- Key usage bits that may be consistent: digitalSignature
@@ -98,6 +101,7 @@ var clientAuth = map[x509.KeyUsage]bool{
 	x509.KeyUsageDigitalSignature | x509.KeyUsageKeyAgreement: true,
 }
 
+// Variable containing the consistent KU combinations with Code Signing EKU:
 // 	RFC 5280 4.2.1.12 on KU consistency with Code Signing EKU:
 //   -- Signing of downloadable executable code
 //   -- Key usage bits that may be consistent: digitalSignature
@@ -106,6 +110,7 @@ var codeSigning = map[x509.KeyUsage]bool{
 	x509.KeyUsageDigitalSignature: true,
 }
 
+// Variable containing the consistent KU combinations with Email Protection EKU:
 // 	RFC 5280 4.2.1.12 on KU consistency with Email Protection EKU:
 // 	  -- Email protection
 //    -- Key usage bits that may be consistent: digitalSignature,
@@ -126,6 +131,7 @@ var emailProtection = map[x509.KeyUsage]bool{
 	x509.KeyUsageDigitalSignature | x509.KeyUsageContentCommitment | x509.KeyUsageKeyAgreement:    true,
 }
 
+// Variable containing the consistent KU combinations with Time Stamping EKU:
 // 	RFC 5280 4.2.1.12 on KU consistency with Time Stamping EKU:
 // 	  -- Binding the hash of an object to a time
 //    -- Key usage bits that may be consistent: digitalSignature
@@ -138,6 +144,7 @@ var timeStamping = map[x509.KeyUsage]bool{
 	x509.KeyUsageDigitalSignature | x509.KeyUsageContentCommitment: true,
 }
 
+// Variable containing the consistent KU combinations with Ocsp Signing EKU:
 // 	RFC 5280 4.2.1.12 on KU consistency with Ocsp Signing EKU:
 // 	  -- Signing OCSP responses
 //    -- Key usage bits that may be consistent: digitalSignature
