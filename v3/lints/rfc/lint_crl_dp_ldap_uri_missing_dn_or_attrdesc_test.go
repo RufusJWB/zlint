@@ -22,7 +22,7 @@ import (
 )
 
 func TestLdapUriParsing(t *testing.T) {
-	inputPath := "ldapUrlParseTest.pem"
+	inputPath := "testtesttest.pem"
 	expected := lint.Error
 	out := test.TestLint("e_crl_dp_ldap_uri_missing_dn_or_attrdesc", inputPath)
 	if out.Status != expected {
